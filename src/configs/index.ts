@@ -1,4 +1,4 @@
 export const config = {
-    port: process.env.PORT || 5000,
+    port: process.env.PORT || 3000,
     mongodbUri: process.env.MONGODB_URI || ""
 }

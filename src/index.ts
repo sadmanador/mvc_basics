@@ -1,14 +1,21 @@
 import cors from "cors";
+import "dotenv/config";
 import express, { Application } from "express";
-import routes from './routes'
+import { config } from "./configs";
 import { connectDatabase } from "./configs/database";
-import { config } from "./configs"
+import routes from './routes';
 
 const app: Application = express();
 
 //Middleware
 app.use(cors())
 app.use(express.json());
+
+// Logger middleware
+app.use((req, _res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next();
+});
 
 //route
 app.use("/api", routes);
@@ -29,3 +36,5 @@ const startServer = async (): Promise<void> => {
 }
 
 export default app;
+
+startServer();
